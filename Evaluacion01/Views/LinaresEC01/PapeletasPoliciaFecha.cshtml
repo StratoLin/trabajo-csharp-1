@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Evaluacion01.Models.Papeleta>
+
+@{
+    ViewData["Title"] = "PapeletasPoliciaFecha";
+}
+
+<h1>Papeletas por policia y fecha</h1>
+
+@using (Html.BeginForm())
+{
+    <div>
+        Seleccione al policia: @Html.DropDownList("pol",
+                                     ViewBag.ListaPolicias as SelectList,"") <br/>
+        Seleccione la fecha: @Html.TextBox("fecha") <br/>
+        <button class="btn btn-info">Consultar</button> |
+        @Html.ActionLink("Regresar","Index","MenuLinaresEC01")
+        
+    </div>
+}
+<br />
+<div>
+    El total de registros es: @ViewBag.total;
+    <br />
+    La suma de los importes es: @ViewBag.suma;
+</div>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nropap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fechapap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nropla)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodinfNavigation.Descrip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodinfNavigation.Importe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Codpol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fechapago)
+            </th>            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nropap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fechapap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nropap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodinfNavigation.Descrip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodinfNavigation.Importe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codpol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fechapago)
+            </td>
+            
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Evaluacion01.Models.Papeleta>
+
+@{
+    ViewData["Title"] = "PapeletasAnios";
+}
+
+<h1>Lista de Papeletas por años</h1>
+
+@using (Html.BeginForm())
+{
+    <div>
+        Año Inicial: @Html.TextBox("fecha1")<br />
+        Año Final:   @Html.TextBox("fecha2")
+        <br/>
+        <button class="btn btn-primary">Consultar</button> |
+        @Html.ActionLink("Regresar","Index","MenuLinaresEC01")
+    </div>
+}
+<br />
+<div class="alert alert-success">
+    <p>
+        La cantidad de registros son: @ViewBag.total       
+    </p>
+</div>
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nropap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fechapap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nropla)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodpolNavigation.Nompol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodpolNavigation.Patrullero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Codinf)
+            </th>         
+            <th>
+                @Html.DisplayNameFor(model => model.Fechapago)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nropap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fechapap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nropap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodpolNavigation.Nompol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodpolNavigation.Patrullero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codinf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fechapago)
+            </td>
+            
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
